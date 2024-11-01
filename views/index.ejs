@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Product Info</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Random Product Info</h1>
+    <form id="load-form" action="/load-products" method="get">
+        <button type="submit">Load</button>
+        <label>
+            <input type="checkbox" name="sorted" value="true" <%= sorted ? 'checked' : '' %> >
+            Sort Alphabetically
+        </label>
+    </form>
+    <div id="product-list">
+        <% if (products.length > 0) { %>
+            <% products.forEach(product => { %>
+                <div class="product">
+                    <h3><%= product.title %></h3>
+                    <img src="<%= product.image %>" alt="<%= product.title %> image" width="150">
+                    <p>Price: $<%= product.price %></p>
+                    <p>Rating: <%= product.rating.rate %> / 5</p>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>Click "Load" to fetch random products.</p>
+        <% } %>
+    </div>
+</body>
+</html>
